@@ -21,4 +21,4 @@ This should give you a file like this:
 
 This file can then be used as input which should produce the decrypted output saved as file:
 
-![alt text](https://github.com/hariomenkel/AzoDecrypt/raw/master/screenshot3.PNG)
+![alt text](https://github.com/hariomenkel/AzoBrute/raw/main/screenshot.png)
