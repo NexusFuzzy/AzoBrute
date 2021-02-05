@@ -4,14 +4,15 @@ import argparse
 import sys
 import os
 
+known_keys = [b'\x0d\x0a\xc8', b'\x03\x55\xae', b'\x0a\xc8\x0d']
 
 def xor(data, key):
     l = len(key)
     return bytearray((
         (data[i] ^ key[i % l]) for i in range(0,len(data))
     ))
-    
-    
+
+
 def print_header():
     print("   _____              __________                __   ")
     print("  /  _  \ ____________\______   \_______ __ ___/  |_  ____")
@@ -35,6 +36,18 @@ else:
 
         input_file = open(args.input_file, "rb")
         input = input_file.read()
+
+        # Before we start, we try a collection of known keys so we don't have to brute-force it
+        for known_key in known_keys:
+            output = xor(input, known_key)
+            o = output.decode('utf-8', errors='ignore')
+            if "<info" in o:
+                position_start = o.find("<info")
+                stripped = o[position_start:]
+                position_end = stripped.find(">")
+                print("[ " + str(datetime.now()) + " ] Found GUID: " + stripped[+5:position_end])
+                print("[ " + str(datetime.now()) + " ] Found possible key: " + str(known_key.hex()))
+                exit()
 
         for x in itertools.product([0, 1], repeat=24):
             integer = ''
