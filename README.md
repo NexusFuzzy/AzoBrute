@@ -1,5 +1,5 @@
 # AzoBrute
-A tool to bruteforce the encryption key and GUID for AzoRult 3.2 and 3.3.
+A tool to bruteforce the encryption key and GUID for AzoRult 3.2 and 3.3 using a [Known-Plaintext Attack](https://en.wikipedia.org/wiki/Known-plaintext_attack).
 
 This script is able to bruteforce the XOR key used for encrypting the traffic sent via POST to the AzoRult Server. Afterwards, it automatically extracts the GUID which you can the use for [AzoSPam](http://github.com/hariomenkel/AzoSpam). One way to save those requests is with Burp Suite with which you are able to save out the requests to file:
 
